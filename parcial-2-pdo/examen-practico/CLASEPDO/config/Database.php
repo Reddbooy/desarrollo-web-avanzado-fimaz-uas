@@ -2,7 +2,7 @@
 <?php
     class Database{
         private $host = "localhost:3307";
-        private $db = "phppdobd";
+        private $db = "database";
         private $user = "root";
         private $password = "";
         private $charset = "utf8mb4";
