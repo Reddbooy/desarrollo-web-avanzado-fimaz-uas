@@ -1,0 +1,32 @@
+---
+title: "Tienda MVC"
+description: "Documentación oficial del proyecto Tienda MVC, una aplicación web robusta construida con PHP utilizando Programación Orientada a Objetos (POO), PDO y el patrón de diseño MVC."
+---
+
+Bienvenido a la documentación de **Tienda MVC**. Este proyecto está diseñado para la administración de un catálogo de productos con un panel administrativo seguro, paginación dinámica, validaciones contra vulnerabilidades comunes (como ataques CSRF) y un diseño responsivo utilizando Bootstrap 5.
+
+<CardGroup cols={2}>
+  <Card title="Inicio Rápido" icon="rocket" href="/quickstart">
+    Aprende a instalar y configurar el proyecto localmente en pocos minutos con tu servidor XAMPP/WAMP.
+  </Card>
+  <Card title="Arquitectura MVC" icon="sitemap" href="/arquitectura">
+    Entiende la estructura del código, la autocarga con namespaces y la separación de responsabilidades.
+  </Card>
+  <Card title="Base de Datos" icon="database" href="/database">
+    Revisa el esquema relacional de la base de datos y la implementación de transacciones SQL.
+  </Card>
+  <Card title="Seguridad y Rutas" icon="shield-halved" href="/seguridad">
+    Conoce los mecanismos de protección (CSRF, verificación de sesión) y las rutas de la aplicación.
+  </Card>
+</CardGroup>
+
+## Características Principales
+
+* **Patrón MVC**: Separación clara de la lógica de negocio (Modelos), la lógica de presentación (Vistas) y el flujo de control (Controladores).
+* **Base de Datos con PDO**: Conexiones seguras a MySQL/MariaDB empleando sentencias preparadas y control de excepciones (`Try-Catch`).
+* **Transacciones de BD**: Integridad de datos garantizada en procesos críticos (creación, edición y eliminación de productos) mediante confirmaciones (`commit`) y reversiones (`rollback`).
+* **Seguridad Incorporada**:
+  * Autenticación con contraseñas encriptadas mediante `bcrypt` (`password_hash`).
+  * Validación estricta de tokens CSRF en todos los envíos POST.
+  * Control de acceso en rutas administrativas mediante variables de sesión.
+* **Interfaz Responsiva**: Diseñada con Bootstrap 5 para garantizar una excelente experiencia de usuario tanto en dispositivos móviles como de escritorio.
