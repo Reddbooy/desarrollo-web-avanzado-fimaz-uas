@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# 1. Evitar bucles: Si la petición ya va hacia index.php, no hacer nada
+RewriteCond %{ENV:REDIRECT_STATUS} 200
+RewriteRule ^ - [L]
+
+# 2. Si el usuario escribe manualmente ?route= en la URL, lo redirigimos a la versión limpia (Opcional, para SEO)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php\?route=([^\s&]+) [NC]
+RewriteRule ^index\.php$ /%1? [R=301,L]
+
+# 3. La magia: Si la petición no es un archivo ni una carpeta real,
+# pasa todo lo que esté después del dominio al parámetro ?route=
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
