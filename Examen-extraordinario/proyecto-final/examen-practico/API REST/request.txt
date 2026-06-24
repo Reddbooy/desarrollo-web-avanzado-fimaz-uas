@@ -1,0 +1,29 @@
+GET http://localhost:8000/productos
+
+GET http://localhost:8000/productos/2
+
+PUT http://localhost:8000/productos/2
+content-type: application/json
+
+{
+    "nombreproducto": "Coca-Cola 600 Ml",
+    "descripcion": "Rica coquita",
+    "precioCompra": 19,
+    "precioVenta": 25,
+    "existencia": 1000
+
+}
+
+
+POST http://localhost:8000/productos/
+content-type: application/json
+
+{
+    "nombreproducto": "Pepsi 3lts",
+    "descripcion": "Pepsi muy mala",
+    "precioCompra": 10,
+    "precioVenta": 25,
+    "existencia": 500
+}
+
+DELETE http://localhost:8000/productos/1
