@@ -1,0 +1,3 @@
+# Actividad 2 - Artículo PDO
+
+Este proyecto es la transcripción digital del artículo sobre PHP PDO solicitado en la materia de Desarrollo Web Avanzado (según se muestra en image_8a4044.png). Se pidió realizar un resumen fiel y completo del contenido original.
