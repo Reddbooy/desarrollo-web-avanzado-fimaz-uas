@@ -1,5 +1,10 @@
-<!-- Jesus Eduardo Garcia Rojas -->
 <?php
+
+
+//Jesus Eduardo Garcia Rojas
+
+
+namespace models;
 class Producto{
     private $id;
     private $nombre;
@@ -7,7 +12,8 @@ class Producto{
     private $existencia;
     private $precio;
 
-    public function __construct($id = null, $nombre = "", $descripcion = "", $existencia = 0, $precio = 0){
+    public function __construct($id = null, $nombre = "", 
+    $descripcion="", $existencia = 0, $precio=0.0){
         $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
@@ -18,7 +24,6 @@ class Producto{
     public function getId(){
         return $this->id;
     }
-
     public function setId($id){
         $this->id = $id;
     }
@@ -26,7 +31,6 @@ class Producto{
     public function getNombre(){
         return $this->nombre;
     }
-
     public function setNombre($nombre){
         $this->nombre = $nombre;
     }
@@ -38,17 +42,18 @@ class Producto{
         $this->descripcion = $descripcion;
     }
 
-    public function getExistencia(){
-        return $this->existencia;
-    }
-    public function setExistencia($existencia){
-        $this->existencia = $existencia;
-    }
-
     public function getPrecio(){
         return $this->precio;
     }
     public function setPrecio($precio){
         $this->precio = $precio;
     }
+
+    public function getExistencia(){
+        return $this->existencia;
+    }
+    public function setExistencia($existencia){
+        $this->existencia = $existencia;
+    }
 }
+?>
