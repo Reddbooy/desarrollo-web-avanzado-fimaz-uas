@@ -1,0 +1,61 @@
+---
+title: "Referencia de Rutas"
+description: "Mapeo completo de URLs del sistema, verbos HTTP y métodos de controlador asociados."
+---
+
+El enrutamiento del sistema se basa en un **Controlador Frontal** ([index.php](file:///c:/xampp/htdocs/TIENDA_MVC/index.php)) que canaliza todas las peticiones a través de reglas de reescritura.
+
+## Enrutamiento en `.htaccess`
+
+El archivo `.htaccess` redirige de forma transparente las peticiones hacia el parámetro `route` de `index.php` siempre que no correspondan a un archivo físico (`-f`) o carpeta física (`-d`):
+
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
+```
+
+---
+
+## Tabla de Rutas
+
+| Ruta (URI) | Método | Controlador | Acción | Acceso | Descripción |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `/catalogo` o `/` | `GET` | [PublicController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/PublicController.php) | `catalogo()` | Público | Muestra el catálogo principal de productos con un buscador. |
+| `/login` | `GET` | [AuthController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/AuthController.php) | `showLogin()` | Público | Renderiza el formulario de inicio de sesión. |
+| `/auth/login` | `POST` | [AuthController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/AuthController.php) | `login()` | Público | Procesa el intento de login y valida credenciales y token CSRF. |
+| `/logout` | `GET` | [AuthController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/AuthController.php) | `logout()` | Administrador | Destruye la sesión del usuario y redirige al login. |
+| `/productos` | `GET` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `index()` | Administrador | Muestra la tabla de productos paginada (límite de 2 productos por página). |
+| `/productos/create` | `GET` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `create()` | Administrador | Muestra el formulario para crear un producto. |
+| `/productos/store` | `POST` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `store()` | Administrador | Procesa el envío del formulario para guardar un producto nuevo. |
+| `/productos/edit` | `GET` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `edit()` | Administrador | Muestra el formulario para editar un producto (recibe `id` en la query). |
+| `/productos/update` | `POST` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `update()` | Administrador | Procesa el envío del formulario para actualizar un producto. |
+| `/productos/delete` | `POST` | [ProductoController](file:///c:/xampp/htdocs/TIENDA_MVC/controllers/ProductoController.php) | `delete()` | Administrador | Elimina el producto indicado mediante un envío POST seguro. |
+| `/api/productos` | `GET` | - | *Directo* | Público | Consume de forma interna un API externo a través de cURL. |
+
+---
+
+## Estructura del Enrutador
+
+El flujo de control se resuelve mediante un bloque `switch` en el archivo raíz del proyecto:
+
+```php index.php
+$route = $_GET['route'] ?? 'catalogo';
+
+switch ($route) {
+    case 'login':
+        $authController->showLogin();
+        break;
+    case 'auth/login':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $authController->login();
+        }
+        break;
+    // ... otros casos de uso
+    case 'catalogo':
+    default:
+        $publicController->catalogo();
+        break;
+}
+```
