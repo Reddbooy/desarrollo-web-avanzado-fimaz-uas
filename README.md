@@ -19,5 +19,6 @@ Este repositorio tiene como finalidad documentar de manera progresiva y verifica
 * **parcial-3-mvc/:** Estructura Modelo-Vista-Controlador
 * **parcial-4-rest/:** API REST funcional
 * **proyecto-final/:** Aplicación web completa MVC + REST
+* **examen-extraordinario/:** 
 
 ---
